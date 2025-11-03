@@ -24,9 +24,11 @@ class GameBoard:
         i, j = edge
         if i == j:
             raise ValueError('Cannot color a self-edge.')
+        if self.board[i][j] == Color.NONE:
+            raise ValueError(f"Edge {edge} does not exist.")
         if self.board[i][j] != Color.UNCOLORED:
             raise ValueError(f"Edge {edge} is already colored.")
-    
+
         # Color both directions to maintain symmetry
         self.board[i][j] = color
         self.board[j][i] = color
